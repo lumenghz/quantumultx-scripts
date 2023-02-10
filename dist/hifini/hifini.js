@@ -30,9 +30,16 @@
   if (is.isRequest && cookieRegex.test($request.url)) {
     $notify("DEBUG", "hifini", JSON.stringify($request.headers));
     const cookie = $request == null ? void 0 : $request.headers.Cookie;
-    if ($request.method === "GET" && cookie !== void 0) {
-      store.write("hifini_cookie", cookie);
-      $notify("cookie更新成功", "hifini", `更新为 ${cookie}`);
+    if ($request.method === "GET") {
+      if (cookie !== void 0) {
+        store.write("hifini_cookie", cookie);
+        $notify("cookie更新成功", "hifini", `更新为 ${cookie}`);
+      } else {
+        $notify("hifini no cookie");
+      }
     }
+    $done();
+  } else {
+    $done();
   }
 })();
