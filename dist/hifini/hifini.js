@@ -24,15 +24,15 @@
       }
     };
   }
-  const cookieRegex = /https:\/\/hifini.com/;
   const store = useStore();
   const is = useIs();
+  const prefKey = "hifini_cookie";
+  const cookieRegex = /https:\/\/hifini.com/;
   if (is.isRequest && cookieRegex.test($request.url)) {
-    $notify("DEBUG", "hifini", JSON.stringify($request.headers));
     const cookie = $request == null ? void 0 : $request.headers.Cookie;
     if ($request.method === "GET") {
       if (cookie !== void 0) {
-        store.write("hifini_cookie", cookie);
+        store.write(prefKey, cookie);
         $notify("cookie更新成功", "hifini", `更新为 ${cookie}`);
       } else {
         $notify("hifini no cookie");
@@ -40,6 +40,21 @@
     }
     $done();
   } else {
-    $done();
+    checkin();
+  }
+  function checkin() {
+    $task.fetch({
+      url: "https://www.hifini.com/sg_sign.htm",
+      method: "POST",
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36",
+        "Cookie": store.read(prefKey)
+      }
+    }).then((response) => {
+      if (response.statusCode === 200)
+        $notify("[hifini] 签到成功");
+    }).finally(() => {
+      $done();
+    });
   }
 })();
