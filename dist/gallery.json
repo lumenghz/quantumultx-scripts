@@ -2,8 +2,6 @@
   "name": "QuantumultX-Task",
   "description": "Self-use QuantumultX scripts",
   "task": [
-    {
-      "config": "1 0 * * * https://raw.githubusercontent.com/lumenghz/quantumultx-scripts/main/dist/hifini/hifini.js, tag=hifini, img-url=https://raw.githubusercontent.com/lumenghz/quantumultx-scripts/main/dist/hifini/hifini.png"
-    }
+    "1 0 * * * https://raw.githubusercontent.com/lumenghz/quantumultx-scripts/main/dist/hifini/hifini.js, tag=hifini, img-url=https://raw.githubusercontent.com/lumenghz/quantumultx-scripts/main/dist/hifini/hifini.png"
   ]
 }
