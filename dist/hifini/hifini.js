@@ -29,9 +29,10 @@
   const prefKey = "hifini_cookie";
   const cookieRegex = /https:\/\/hifini.com/;
   if (is.isRequest && cookieRegex.test($request.url)) {
-    const cookie = $request == null ? void 0 : $request.headers.Cookie;
+    const cookie = $request == null ? void 0 : $request.headers.cookie;
     if ($request.method === "GET") {
       if (cookie !== void 0) {
+        console.log(cookie);
         store.write(prefKey, cookie);
         $notify("cookie更新成功", "hifini", `更新为 ${cookie}`);
       } else {
@@ -52,7 +53,7 @@
       }
     }).then((response) => {
       if (response.statusCode === 200)
-        $notify("[hifini] 签到成功");
+        $notify("签到成功", "hifini", "自动化已完成");
     }).finally(() => {
       $done();
     });
