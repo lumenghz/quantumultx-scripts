@@ -27,7 +27,7 @@
   const store = useStore();
   const is = useIs();
   const prefKey = "hifini_cookie";
-  const cookieRegex = /^https:\/\/hifini.com\/$/;
+  const cookieRegex = /^https:\/\/hifini.com$/;
   if (is.isRequest && cookieRegex.test($request.url)) {
     const cookie = $request == null ? void 0 : $request.headers.cookie;
     if ($request.method === "GET") {
