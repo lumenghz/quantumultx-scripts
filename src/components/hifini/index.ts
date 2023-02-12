@@ -17,7 +17,11 @@ if (is.isRequest && cookieRegex.test($request!.url)) {
   $done()
 }
 else {
-  checkin()
+  printRequestUrl()
+}
+
+function printRequestUrl(): void {
+  $notify('hifini', 'url', $request!.url)
 }
 
 function checkin(): void {

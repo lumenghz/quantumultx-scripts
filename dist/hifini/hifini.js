@@ -38,21 +38,9 @@
     }
     $done();
   } else {
-    checkin();
+    printRequestUrl();
   }
-  function checkin() {
-    $task.fetch({
-      url: "https://www.hifini.com/sg_sign.htm",
-      method: "POST",
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36",
-        "Cookie": store.read(prefKey)
-      }
-    }).then((response) => {
-      if (response.statusCode === 200)
-        $notify("签到成功", "hifini", "自动化已完成");
-    }).finally(() => {
-      $done();
-    });
+  function printRequestUrl() {
+    $notify("hifini", "url", $request.url);
   }
 })();
