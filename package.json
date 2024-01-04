@@ -1,7 +1,7 @@
 {
   "name": "quantumultx-scripts",
   "private": true,
-  "packageManager": "pnpm@8.11.0",
+  "packageManager": "pnpm@8.14.0",
   "author": "Dennis Lu <jiahehz@gmail.com>",
   "repository": {
     "type": "git",
